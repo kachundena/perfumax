@@ -25,6 +25,17 @@ public class Perfume {
     public Perfume() {
     }
 
+    public Perfume(String nombre, String marca) {
+        this.nombre = nombre;
+        this.marca = marca;
+    }
+
+    public Perfume(int perfumeid, String nombre, String marca) {
+        this.perfume_id = perfumeid;
+        this.nombre = nombre;
+        this.marca = marca;
+    }
+
     public int getPerfume_id() {
         return perfume_id;
     }

@@ -1,4 +1,4 @@
-package com.kachundena.taskmanager;
+package com.kachundena.perfumax;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,54 +9,57 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import com.kachundena.taskmanager.modelos.Task;
+import com.kachundena.perfumax.modelos.Perfume;
 
-public class AdaptadorTasks extends RecyclerView.Adapter<AdaptadorTasks.MyViewHolder> {
+public class AdaptadorPerfumes extends RecyclerView.Adapter<AdaptadorPerfumes.MyViewHolder> {
 
-    private List<Task> listaDeTasks;
+    private List<Perfume> listaDePerfumes;
 
-    public void setListaDeTasks(List<Task> listaDeTasks) {
+    public void setListaDePerfumes(List<Perfume> listaDePerfumes) {
 
-        this.listaDeTasks = listaDeTasks;
+        this.listaDePerfumes = listaDePerfumes;
     }
 
-    public AdaptadorTasks(List<Task> tasks) {
+    public AdaptadorPerfumes(List<Perfume> perfumes) {
 
-        this.listaDeTasks = tasks;
+        this.listaDePerfumes = perfumes;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View filaTask = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fila_task, viewGroup, false);
+        View filaTask = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.fila_perfume, viewGroup, false);
         return new MyViewHolder(filaTask);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
         // Obtener la tarea de nuestra lista gracias al índice i
-        Task task = listaDeTasks.get(i);
+        Perfume perfume = listaDePerfumes.get(i);
 
         // Obtener los datos de la lista
-        String deno = task.getDeno();
-        String detalle = task.getDetalle();
+        int perfume_id = perfume.getPerfume_id();
+        int area = perfume.getArea();
+        String nombre = perfume.getNombre();
+        String marca = perfume.getMarca();
+
         // Y poner a los TextView los datos con setText
-        myViewHolder.deno.setText(deno);
-        myViewHolder.detalle.setText(detalle);
+        myViewHolder.nombre.setText(nombre);
+        myViewHolder.marca.setText(marca);
     }
 
     @Override
     public int getItemCount() {
-        return listaDeTasks.size();
+        return listaDePerfumes.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView deno, detalle;
+        TextView nombre, marca;
 
         MyViewHolder(View itemView) {
             super(itemView);
-            this.deno = itemView.findViewById(R.id.tvDeno);
-            this.detalle = itemView.findViewById(R.id.tvDetalle);
+            this.nombre = itemView.findViewById(R.id.tvNombre);
+            this.marca = itemView.findViewById(R.id.tvMarca);
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.kachundena.taskmanager;
+package com.kachundena.perfumax;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,54 +7,55 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.kachundena.taskmanager.controllers.TasksController;
-import com.kachundena.taskmanager.modelos.Task;
+import com.kachundena.perfumax.controllers.PerfumesController;
+import com.kachundena.perfumax.modelos.Perfume;
 
 
-public class AgregarTaskActivity extends AppCompatActivity {
-    private Button btnAgregarTask, btnCancelarNuevaTask;
-    private EditText etDeno, etDetalle;
-    private TasksController tasksController;
+public class AgregarPerfumeActivity extends AppCompatActivity {
+    private Button btnAgregarPerfume, btnCancelarNuevoPerfume;
+    private EditText etNombre, etMarca;
+    private PerfumesController perfumesController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_agregar_task);
+        setContentView(R.layout.activity_agregar_perfume);
 
         // Instanciar vistas
-        etDeno = findViewById(R.id.etDeno);
-        etDetalle = findViewById(R.id.etDetalle);
-        btnAgregarTask = findViewById(R.id.btnAgregarTask);
-        btnCancelarNuevaTask = findViewById(R.id.btnCancelarNuevaTask);
+        etNombre = findViewById(R.id.etNombre);
+        etMarca = findViewById(R.id.etMarca);
+        btnAgregarPerfume = findViewById(R.id.btnAgregarPerfume);
+        btnCancelarNuevoPerfume = findViewById(R.id.btnCancelarNuevoPerfume);
         // Crear el controlador
-        tasksController = new TasksController(AgregarTaskActivity.this);
+        perfumesController = new PerfumesController(AgregarPerfumeActivity.this);
 
         // Agregar listener del botón de guardar
-        btnAgregarTask.setOnClickListener(new View.OnClickListener() {
+        btnAgregarPerfume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Resetear errores a ambos
-                etDeno.setError(null);
-                etDetalle.setError(null);
-                String deno = etDeno.getText().toString(),
-                        detalle = etDetalle.getText().toString();
-                if ("".equals(deno)) {
-                    etDeno.setError("Escribe la descripcion de la tarea");
-                    etDeno.requestFocus();
+                etNombre.setError(null);
+                etMarca.setError(null);
+                String nombre = etNombre.getText().toString(),
+                        marca = etMarca.getText().toString();
+                if ("".equals(nombre)) {
+                    etNombre.setError("Escribe el nombre del perfume");
+                    etNombre.requestFocus();
                     return;
                 }
-                if ("".equals(detalle)) {
-                    etDetalle.setError("Escribe el detalle de la tarea");
-                    etDetalle.requestFocus();
+                if ("".equals(marca)) {
+                    etMarca.setError("Escribe la marca del perfume");
+                    etMarca.requestFocus();
                     return;
                 }
 
                 // Ya pasó la validación
-                Task nuevaTask = new Task(deno, detalle);
-                long id = tasksController.nuevaTask(nuevaTask);
+                Perfume nuevoPerfume = new Perfume(nombre, marca);
+
+                long id = perfumesController.nuevoPerfume(nuevoPerfume);
                 if (id == -1) {
                     // De alguna manera ocurrió un error
-                    Toast.makeText(AgregarTaskActivity.this, "Error al guardar. Intenta de nuevo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AgregarPerfumeActivity.this, "Error al guardar. Intenta de nuevo", Toast.LENGTH_SHORT).show();
                 } else {
                     // Terminar
                     finish();
@@ -63,7 +64,7 @@ public class AgregarTaskActivity extends AppCompatActivity {
         });
 
         // El de cancelar simplemente cierra la actividad
-        btnCancelarNuevaTask.setOnClickListener(new View.OnClickListener() {
+        btnCancelarNuevoPerfume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

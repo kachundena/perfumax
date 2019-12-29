@@ -10,13 +10,13 @@
     android:padding="5dp">
 
     <TextView
-        android:id="@+id/tvDeno"
+        android:id="@+id/tvNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:text="Aquí la descripcion de la tarea"
+        android:text="Aquí el nombre del perfume"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -24,13 +24,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvDetalle"
+        android:id="@+id/tvMarca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:text="Aquí el detalle de la tarea"
+        android:text="Aquí la marca del perfume"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDeno" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
 </android.support.constraint.ConstraintLayout>

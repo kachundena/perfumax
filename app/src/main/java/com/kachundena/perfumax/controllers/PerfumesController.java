@@ -1,4 +1,4 @@
-package com.kachundena.taskmanager.controllers;
+package com.kachundena.perfumax.controllers;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,60 +7,60 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-import com.kachundena.taskmanager.AyudanteBaseDeDatos;
-import com.kachundena.taskmanager.modelos.Task;
+import com.kachundena.perfumax.AyudanteBaseDeDatos;
+import com.kachundena.perfumax.modelos.Perfume;
 
-public class TasksController {
+public class PerfumesController {
     private AyudanteBaseDeDatos ayudanteBaseDeDatos;
-    private String NOMBRE_TABLA = "tasks";
+    private String NOMBRE_TABLA = "perfumes";
 
-    public TasksController(Context contexto) {
+    public PerfumesController(Context contexto) {
         ayudanteBaseDeDatos = new AyudanteBaseDeDatos(contexto);
     }
 
 
-    public int eliminarTask(Task task) {
+    public int eliminarPerfume(Perfume perfume) {
 
         SQLiteDatabase baseDeDatos = ayudanteBaseDeDatos.getWritableDatabase();
-        String[] argumentos = {String.valueOf(task.getTask_id())};
-        return baseDeDatos.delete(NOMBRE_TABLA, "task_id = ?", argumentos);
+        String[] argumentos = {String.valueOf(perfume.getPerfume_id())};
+        return baseDeDatos.delete(NOMBRE_TABLA, "perfume_id = ?", argumentos);
     }
 
-    public int eliminarAllTask() {
+    public int eliminarAllPerfumes() {
 
         SQLiteDatabase baseDeDatos = ayudanteBaseDeDatos.getWritableDatabase();
         return baseDeDatos.delete(NOMBRE_TABLA, null, null);
     }
 
-    public long nuevaTask(Task task) {
+    public long nuevoPerfume(Perfume perfume) {
         // writable porque vamos a insertar
         SQLiteDatabase baseDeDatos = ayudanteBaseDeDatos.getWritableDatabase();
         ContentValues valoresParaInsertar = new ContentValues();
-        valoresParaInsertar.put("deno", task.getDeno());
-        valoresParaInsertar.put("detalle", task.getDetalle());
+        valoresParaInsertar.put("nombre", perfume.getNombre());
+        valoresParaInsertar.put("marca", perfume.getMarca());
         return baseDeDatos.insert(NOMBRE_TABLA, null, valoresParaInsertar);
     }
 
-    public int guardarCambios(Task taskEditada) {
+    public int guardarCambios(Perfume perfumeEditado) {
         SQLiteDatabase baseDeDatos = ayudanteBaseDeDatos.getWritableDatabase();
         ContentValues valoresParaActualizar = new ContentValues();
-        valoresParaActualizar.put("deno", taskEditada.getDeno());
-        valoresParaActualizar.put("detalle", taskEditada.getDetalle());
+        valoresParaActualizar.put("nombre", perfumeEditado.getNombre());
+        valoresParaActualizar.put("marca", perfumeEditado.getMarca());
         // where id...
-        String campoParaActualizar = "task_id = ?";
-        // ... = idMascota
-        String[] argumentosParaActualizar = {String.valueOf(taskEditada.getTask_id())};
+        String campoParaActualizar = "perfume_id = ?";
+        //
+        String[] argumentosParaActualizar = {String.valueOf(perfumeEditado.getPerfume_id())};
         return baseDeDatos.update(NOMBRE_TABLA, valoresParaActualizar, campoParaActualizar, argumentosParaActualizar);
     }
 
-    public ArrayList<Task> obtenerTasks() {
-        ArrayList<Task> tasks = new ArrayList<>();
+    public ArrayList<Perfume> obtenerPerfumes() {
+        ArrayList<Perfume> perfumes = new ArrayList<>();
         // readable porque no vamos a modificar, solamente leer
         SQLiteDatabase baseDeDatos = ayudanteBaseDeDatos.getReadableDatabase();
-        // SELECT deno, detalle, task_id
-        String[] columnasAConsultar = {"deno", "detalle", "task_id"};
+        // SELECT deno, detalle, perfume_id
+        String[] columnasAConsultar = {"nombre", "marca", "perfume_id"};
         Cursor cursor = baseDeDatos.query(
-                NOMBRE_TABLA,//from tasks
+                NOMBRE_TABLA,
                 columnasAConsultar,
                 null,
                 null,
@@ -74,26 +74,26 @@ public class TasksController {
                 Salimos aquí porque hubo un error, regresar
                 lista vacía
              */
-            return tasks;
+            return perfumes;
 
         }
         // Si no hay datos, igualmente regresamos la lista vacía
-        if (!cursor.moveToFirst()) return tasks;
+        if (!cursor.moveToFirst()) return perfumes;
 
         // En caso de que sí haya, iteramos y vamos agregando los
         // datos a la lista de tasks
         do {
             // El 0 es el número de la columna, como seleccionamos
             // deno, detalle,task_id entonces el deno es 0, detalle 1 e task_id es 2
-            String denoObtenidoDeBD = cursor.getString(0);
-            String detalleObtenidaDeBD = cursor.getString(1);
-            int taskid = cursor.getInt(2);
-            Task taskObtenidaDeBD = new Task(taskid, denoObtenidoDeBD, detalleObtenidaDeBD);
-            tasks.add(taskObtenidaDeBD);
+            String nombreObtenidoDeBD = cursor.getString(0);
+            String marcaObtenidaDeBD = cursor.getString(1);
+            int perfumeid = cursor.getInt(2);
+            Perfume perfumeObtenidaDeBD = new Perfume(perfumeid, nombreObtenidoDeBD, marcaObtenidaDeBD);
+            perfumes.add(perfumeObtenidaDeBD);
         } while (cursor.moveToNext());
 
         // Fin del ciclo. Cerramos cursor y regresamos la lista de tasks :)
         cursor.close();
-        return tasks;
+        return perfumes;
     }
 }

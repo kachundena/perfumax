@@ -1,4 +1,4 @@
-package com.kachundena.taskmanager;
+package com.kachundena.perfumax;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

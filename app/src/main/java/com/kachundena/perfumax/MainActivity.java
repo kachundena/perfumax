@@ -1,4 +1,4 @@
-package com.kachundena.taskmanager;
+package com.kachundena.perfumax;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -47,19 +47,19 @@ import java.io.InputStreamReader;
 
 
 import com.google.gson.Gson;
-import com.kachundena.taskmanager.controllers.TasksController;
-import com.kachundena.taskmanager.modelos.Task;
+import com.kachundena.perfumax.controllers.PerfumesController;
+import com.kachundena.perfumax.modelos.Perfume;
 
 import static android.os.Environment.getExternalStorageDirectory;
 
 
 public class MainActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 0;
-    private List<Task> listaDeTasks;
+    private List<Perfume> listaDePerfumes;
     private RecyclerView recyclerView;
-    private AdaptadorTasks adaptadorTasks;
-    private TasksController tasksController;
-    private FloatingActionButton fabAgregarTask;
+    private AdaptadorPerfumes adaptadorPerfumes;
+    private PerfumesController perfumesController;
+    private FloatingActionButton fabAgregarPerfume;
     final Context context = this;
 
 
@@ -79,48 +79,48 @@ public class MainActivity extends AppCompatActivity {
 
         // Lo siguiente sí es nuestro ;)
         // Definir nuestro controlador
-        tasksController = new TasksController(MainActivity.this);
+        perfumesController = new PerfumesController(MainActivity.this);
 
         // Instanciar vistas
-        recyclerView = findViewById(R.id.recyclerViewTasks);
-        fabAgregarTask = findViewById(R.id.fabAgregarTask);
+        recyclerView = findViewById(R.id.recyclerViewPerfumes);
+        fabAgregarPerfume = findViewById(R.id.fabAgregarPerfume);
 
 
         // Por defecto es una lista vacía,
         // se la ponemos al adaptador y configuramos el recyclerView
-        listaDeTasks = new ArrayList<>();
-        adaptadorTasks = new AdaptadorTasks(listaDeTasks);
+        listaDePerfumes = new ArrayList<>();
+        adaptadorPerfumes = new AdaptadorPerfumes(listaDePerfumes);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(adaptadorTasks);
+        recyclerView.setAdapter(adaptadorPerfumes);
 
         // Una vez que ya configuramos el RecyclerView le ponemos los datos de la BD
-        refrescarListaDeTasks();
+        refrescarListaDePerfumes();
 
         // Listener de los clicks en la lista, o sea el RecyclerView
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override // Un toque sencillo
             public void onClick(View view, int position) {
-                // Pasar a la actividad EditarMascotaActivity.java
-                Task taskSeleccionada = listaDeTasks.get(position);
-                Intent intent = new Intent(MainActivity.this, EditarTaskActivity.class);
-                intent.putExtra("idTask", taskSeleccionada.getTask_id());
-                intent.putExtra("denoTask", taskSeleccionada.getDeno());
-                intent.putExtra("detalleTask", taskSeleccionada.getDetalle());
+                // Pasar a la actividad EditarPerfumeActivity.java
+                Perfume perfumeSeleccionado = listaDePerfumes.get(position);
+                Intent intent = new Intent(MainActivity.this, EditarPerfumeActivity.class);
+                intent.putExtra("idPerfume", perfumeSeleccionado.getPerfume_id());
+                intent.putExtra("denoPerfume", perfumeSeleccionado.getNombre());
+                intent.putExtra("detallePerfume", perfumeSeleccionado.getMarca());
                 startActivity(intent);
             }
 
             @Override // Un toque largo
             public void onLongClick(View view, int position) {
-                final Task taskParaEliminar = listaDeTasks.get(position);
+                final Perfume perfumeParaEliminar = listaDePerfumes.get(position);
                 AlertDialog dialog = new AlertDialog
                         .Builder(MainActivity.this)
                         .setPositiveButton("Sí, eliminar", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                tasksController.eliminarTask(taskParaEliminar);
-                                refrescarListaDeTasks();
+                                perfumesController.eliminarPerfume(perfumeParaEliminar);
+                                refrescarListaDePerfumes();
                             }
                         })
                         .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         })
                         .setTitle("Confirmar")
-                        .setMessage("¿Eliminar la tarea " + taskParaEliminar.getDeno() + "?")
+                        .setMessage("¿Eliminar el perfume " + perfumeParaEliminar.getNombre() + "?")
                         .create();
                 dialog.show();
 
@@ -138,17 +138,17 @@ public class MainActivity extends AppCompatActivity {
         }));
 
         // Listener del FAB
-        fabAgregarTask.setOnClickListener(new View.OnClickListener() {
+        fabAgregarPerfume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Simplemente cambiamos de actividad
-                Intent intent = new Intent(MainActivity.this, AgregarTaskActivity.class);
+                Intent intent = new Intent(MainActivity.this, AgregarPerfumeActivity.class);
                 startActivity(intent);
             }
         });
 
         // Créditos
-        fabAgregarTask.setOnLongClickListener(new View.OnLongClickListener() {
+        fabAgregarPerfume.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 new AlertDialog.Builder(MainActivity.this)
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        refrescarListaDeTasks();
+        refrescarListaDePerfumes();
     }
 
 
@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
-    public void refrescarListaDeTasks() {
+    public void refrescarListaDePerfumes() {
         /*
          * ==========
          * Justo aquí obtenemos la lista de la BD
@@ -254,10 +254,10 @@ public class MainActivity extends AppCompatActivity {
          * ============
          *
          * */
-        if (adaptadorTasks == null) return;
-        listaDeTasks = tasksController.obtenerTasks();
-        adaptadorTasks.setListaDeTasks(listaDeTasks);
-        adaptadorTasks.notifyDataSetChanged();
+        if (adaptadorPerfumes == null) return;
+        listaDePerfumes = perfumesController.obtenerPerfumes();
+        adaptadorPerfumes.setListaDePerfumes(listaDePerfumes);
+        adaptadorPerfumes.notifyDataSetChanged();
     }
 
     protected void StringToJSON (File fileJSON, String valor) {
@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
             fileJSON.createNewFile();
             FileWriter fileWriter = new FileWriter(fileJSON);
             valor = "{\n" +
-                    "    \"tasks\": " + valor + "\n" +
+                    "    \"perfumes\": " + valor + "\n" +
                     "}";
             fileWriter.write(valor);
             //System.out.println(valor);
@@ -330,24 +330,24 @@ public class MainActivity extends AppCompatActivity {
             // get JSONObject from JSON file
             File fileData = null;
             File sdcard = Environment.getExternalStorageDirectory();
-            File dir = new File(sdcard.getAbsolutePath() + "/tasks/");
+            File dir = new File(sdcard.getAbsolutePath() + "/perfumax/");
             if(dir.exists()) {
-                fileData = new File(dir, "tasks.json");
+                fileData = new File(dir, "perfumes.json");
             }
             JSONObject obj = new JSONObject(JSONToString(fileData));
             // fetch JSONArray named users
-            JSONArray Jtasks = obj.getJSONArray("tasks");
+            JSONArray Jperfumes = obj.getJSONArray("tasks");
             // implement for loop for getting users list data
-            String deno, detalle;
-            tasksController.eliminarAllTask();
-            for (int i = 0; i < Jtasks.length(); i++) {
+            String nombre, marca;
+            perfumesController.eliminarAllPerfumes();
+            for (int i = 0; i < Jperfumes.length(); i++) {
                 // create a JSONObject for fetching single user data
-                JSONObject Jtask = Jtasks.getJSONObject(i);
+                JSONObject Jtask = Jperfumes.getJSONObject(i);
                 // fetch email and name and store it in arraylist
-                deno = Jtask.getString("deno");
-                detalle = Jtask.getString("detalle");
-                Task nuevatask = new Task(deno, detalle);
-                tasksController.nuevaTask(nuevatask);
+                nombre = Jtask.getString("nombre");
+                marca = Jtask.getString("marca");
+                Perfume nuevoperfume = new Perfume(nombre, marca);
+                perfumesController.nuevoPerfume(nuevoperfume);
 
             }
         } catch (JSONException e) {
@@ -358,20 +358,20 @@ public class MainActivity extends AppCompatActivity {
     protected void exportarJson() {
         try {
             // Get All Tasks for export
-            ArrayList<Task> tasks = tasksController.obtenerTasks();
+            ArrayList<Perfume> perfumes = perfumesController.obtenerPerfumes();
 
             // Convert Class to String JSON
             Gson gson = new Gson();
-            String json = gson.toJson(tasks);
+            String json = gson.toJson(perfumes);
 
 
 
             // get JSONObject from JSON file
             File fileData = null;
             File sdcard = Environment.getExternalStorageDirectory();
-            File dir = new File(sdcard.getAbsolutePath() + "/tasks/");
+            File dir = new File(sdcard.getAbsolutePath() + "/perfumax/");
             if (dir.exists()) {
-                fileData = new File(dir, "tasks.json");
+                fileData = new File(dir, "perfumes.json");
             }
             // Write to file
             StringToJSON(fileData, json);
@@ -399,7 +399,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected File getFileJSON(File myExternalFile, String szFilePath) {
-        String filename = "tasks.json";
+        String filename = "perfumes.json";
         String filepath = "Download";
         String retorno = "";
         String myData = "";
