@@ -1,3 +1,78 @@
 <resources>
     <string name="app_name">Perfumax</string>
+    <string-array name="array_area">
+        <item>Deseos</item>
+        <item>Mis Perfumes</item>
+        <item>Arabes</item>
+        <item>Nichos</item>
+        <item>Mancera</item>
+        <item>Equivalenza</item>
+    </string-array>
+    <string-array name="array_opiniones">
+        <item>Duradera</item>
+        <item>Monster Mode</item>
+        <item>Moderada</item>
+    </string-array>
+    <string-array name="array_lista_deseos">
+        <item>Repito</item>
+        <item>No Repito</item>
+        <item>Deseo</item>
+        <item>Deseo Comercial</item>
+        <item>Mi Perfume</item>
+    </string-array>
+    <string-array name="array_familia">
+        <item>Aromática</item>
+        <item>Aromática Acuática</item>
+        <item>Aromática Fougère</item>
+        <item>Aromática Frutal</item>
+        <item>Aromática Verde</item>
+        <item>Aromática Especiada</item>
+        <item>Chipre</item>
+        <item>Chipre Floral</item>
+        <item>Chipre Frutal</item>
+        <item>Cítrica</item>
+        <item>Cítrica Aromática</item>
+        <item>Cítrica Gourmand</item>
+        <item>Floral</item>
+        <item>Floral Aldehidica</item>
+        <item>Floral Acuática</item>
+        <item>Floral Frutal</item>
+        <item>Floral Frutal Gourmand</item>
+        <item>Floral Verde</item>
+        <item>Floral Amaderado</item>
+        <item>Almizcle</item>
+        <item>Almizcle Floral Amaderado</item>
+        <item>Cuero</item>
+        <item>Oriental</item>
+        <item>Oriental Floral</item>
+        <item>Oriental Fougère</item>
+        <item>Oriental Especiada</item>
+        <item>Oriental Vainilla</item>
+        <item>Oriental Amaderada</item>
+        <item>Amaderada</item>
+        <item>Amaderada Acuática</item>
+        <item>Amaderada Aromática</item>
+        <item>Amaderada Chipre</item>
+        <item>Almizcle Amaderado Floral</item>
+        <item>Amaderada Especiada</item>
+        <item>Frutal</item>
+    </string-array>
+    <string-array name="array_estela">
+        <item>Medio</item>
+        <item>Alta</item>
+        <item>Baja</item>
+    </string-array>
+    <string-array name="array_duracion">
+        <item>Alta</item>
+        <item>Baja</item>
+        <item>Media</item>
+        <item>Todo el día</item>
+    </string-array>
+    <string-array name="array_valoracion">
+        <item>Alta</item>
+        <item>Mi Perfume</item>
+        <item>Media</item>
+        <item>Baja</item>
+    </string-array>
+
 </resources>

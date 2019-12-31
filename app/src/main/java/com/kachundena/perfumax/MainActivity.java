@@ -2,7 +2,6 @@ package com.kachundena.perfumax;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,12 +17,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-import android.content.Context;
 
 
 import java.io.FileWriter;
@@ -35,14 +32,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 
@@ -50,7 +44,6 @@ import com.google.gson.Gson;
 import com.kachundena.perfumax.controllers.PerfumesController;
 import com.kachundena.perfumax.modelos.Perfume;
 
-import static android.os.Environment.getExternalStorageDirectory;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -71,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // Ojo: este código es generado automáticamente, pone la vista y ya, pero
-        // no tiene nada que ver con el código que vamos a escribir
+        //
+        // Ojo: este codigo es generado automaticamente, pone la vista y ya, pero
+        // no tiene nada que ver con el codigo que vamos a escribir
+        //
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -105,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
                 // Pasar a la actividad EditarPerfumeActivity.java
                 Perfume perfumeSeleccionado = listaDePerfumes.get(position);
                 Intent intent = new Intent(MainActivity.this, EditarPerfumeActivity.class);
-                intent.putExtra("idPerfume", perfumeSeleccionado.getPerfume_id());
-                intent.putExtra("denoPerfume", perfumeSeleccionado.getNombre());
-                intent.putExtra("detallePerfume", perfumeSeleccionado.getMarca());
+                intent.putExtra("perfumeid", perfumeSeleccionado.getPerfume_id());
+                intent.putExtra("nombre", perfumeSeleccionado.getNombre());
+                intent.putExtra("marca", perfumeSeleccionado.getMarca());
                 startActivity(intent);
             }
 

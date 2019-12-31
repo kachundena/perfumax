@@ -1,17 +1,23 @@
 package com.kachundena.perfumax;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.kachundena.perfumax.controllers.PerfumesController;
 import com.kachundena.perfumax.modelos.Perfume;
 
+import java.util.HashMap;
+
 public class EditarPerfumeActivity extends AppCompatActivity {
     private EditText etEditarNombre, etEditarMarca;
+    private Spinner spArea;
     private Button btnGuardarCambios, btnCancelarEdicion;
     private Perfume perfume;
     private PerfumesController perfumesController;
@@ -31,12 +37,29 @@ public class EditarPerfumeActivity extends AppCompatActivity {
         // Instanciar el controlador de los perfumes
         perfumesController = new PerfumesController(EditarPerfumeActivity.this);
 
+        // Poner valores a los desplegables
+        // Area
+        spArea = (Spinner)findViewById(R.id.spArea);
+        HashMap<Integer, String> hmArea = new HashMap();
+        Resources res = getResources();
+        String[] arszArea = res.getStringArray(R.array.array_area);
+        for (int i = 0; i < arszArea.length; i++) {
+            hmArea.put(i,arszArea[i]);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(EditarPerfumeActivity.this, android.R.layout.simple_spinner_item, arszArea);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spArea.setAdapter(adapter);
+
+
+
         // Rearmar el perfume
         // Nota: igualmente solamente podríamos mandar el id y recuperar el perfume de la BD
-        int idPerfume = extras.getInt("idPerfume");
-        String denoPerfume = extras.getString("nombrePerfume");
-        String detallePerfume = extras.getString("detallePerfume");
-        perfume = new Perfume(idPerfume, denoPerfume, detallePerfume);
+        int perfumeid = extras.getInt("perfumeid");
+        String nombre = extras.getString("nombre");
+        String marca = extras.getString("marca");
+        // buscar perfume a partir del perfumeid
+        perfume = perfumesController.obtenerPerfume(perfumeid);
 
 
         // Ahora declaramos las vistas

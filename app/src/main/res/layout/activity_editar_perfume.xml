@@ -1,7 +1,24 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvPerfumeId"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <TextView
         android:id="@+id/textView"
@@ -44,6 +61,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEditarNombre" />
 
+    <Spinner
+        android:id="@+id/spArea"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEditarMarca" />
     <Button
         android:id="@+id/btnGuardarCambiosPerfume"
         style="@style/Widget.AppCompat.Button.Colored"
@@ -54,7 +81,7 @@
         android:layout_marginRight="200dp"
         android:text="Guardar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEditarMarca" />
+        app:layout_constraintTop_toBottomOf="@+id/spArea" />
 
     <Button
         android:id="@+id/btnCancelarEdicionPerfume"
@@ -70,5 +97,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toEndOf="@+id/btnGuardarCambiosPerfume"
-        app:layout_constraintTop_toBottomOf="@+id/etEditarMarca" />
+        app:layout_constraintTop_toBottomOf="@+id/spArea" />
+
+
 </android.support.constraint.ConstraintLayout>
