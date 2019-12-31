@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class EditarPerfumeActivity extends AppCompatActivity {
     private EditText etEditarNombre, etEditarMarca;
-    private Spinner spArea;
+    private Spinner spArea, spOpiniones, spListaDeseos, spFamilia;
     private Button btnGuardarCambios, btnCancelarEdicion;
     private Perfume perfume;
     private PerfumesController perfumesController;
@@ -46,10 +46,42 @@ public class EditarPerfumeActivity extends AppCompatActivity {
         for (int i = 0; i < arszArea.length; i++) {
             hmArea.put(i,arszArea[i]);
         }
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(EditarPerfumeActivity.this, android.R.layout.simple_spinner_item, arszArea);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spArea.setAdapter(adapter);
+
+        // Opiniones
+        spOpiniones = (Spinner)findViewById(R.id.spOpiniones);
+        HashMap<Integer, String> hmOpiniones = new HashMap();
+        String[] arszOpiniones = res.getStringArray(R.array.array_opiniones);
+        for (int i = 0; i < arszOpiniones.length; i++) {
+            hmOpiniones.put(i,arszOpiniones[i]);
+        }
+        ArrayAdapter<String> adapterOpiniones = new ArrayAdapter<String>(EditarPerfumeActivity.this, android.R.layout.simple_spinner_item, arszOpiniones);
+        adapterOpiniones.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spOpiniones.setAdapter(adapterOpiniones);
+
+        // Lista Deseos
+        spListaDeseos = (Spinner)findViewById(R.id.spListaDeseos);
+        HashMap<Integer, String> hmListaDeseos = new HashMap();
+        String[] arszListaDeseos = res.getStringArray(R.array.array_lista_deseos);
+        for (int i = 0; i < arszListaDeseos.length; i++) {
+            hmListaDeseos.put(i,arszListaDeseos[i]);
+        }
+        ArrayAdapter<String> adapterListaDeseos = new ArrayAdapter<String>(EditarPerfumeActivity.this, android.R.layout.simple_spinner_item, arszListaDeseos);
+        adapterListaDeseos.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spListaDeseos.setAdapter(adapterListaDeseos);
+
+        // Familia
+        spFamilia = (Spinner)findViewById(R.id.spFamilia);
+        HashMap<Integer, String> hmFamilia = new HashMap();
+        String[] arszFamilia = res.getStringArray(R.array.array_familia);
+        for (int i = 0; i < arszFamilia.length; i++) {
+            hmFamilia.put(i,arszFamilia[i]);
+        }
+        ArrayAdapter<String> adapterFamilia = new ArrayAdapter<String>(EditarPerfumeActivity.this, android.R.layout.simple_spinner_item, arszFamilia);
+        adapterFamilia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spFamilia.setAdapter(adapterFamilia);
 
 
 
