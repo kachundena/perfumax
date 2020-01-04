@@ -1,8 +1,16 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/principal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/lltitulo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
 
     <TextView
         android:id="@+id/tvPerfumeId"
@@ -14,9 +22,7 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
 
 
@@ -31,108 +37,156 @@
         android:layout_marginRight="8dp"
         android:text="Editando Perfume"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold"/>
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/llnombre"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/lbNombre"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textSize="16sp" />
     <EditText
         android:id="@+id/etEditarNombre"
-        android:layout_width="278dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
+        android:layout_weight="3"
         android:hint="Nombre del perfume"
         android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:textSize="16sp" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/llmarca"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/lbMarca"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:gravity="left|bottom"
+        android:text="Marca"
+        android:textSize="16sp" />
     <EditText
         android:id="@+id/etEditarMarca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
         android:hint="Marca del perfume"
-        android:inputType="text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEditarNombre" />
+        android:textSize="16sp"
+        android:inputType="text" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llarea"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/lbArea"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:text="Area"
+        android:textSize="16sp" />
     <Spinner
         android:id="@+id/spArea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEditarMarca" />
+        android:ems="10" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llopiniones"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/lbOpiniones"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:text="Opiniones"
+        android:textSize="16sp" />
     <Spinner
         android:id="@+id/spOpiniones"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spArea" />
+        android:ems="10" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lllistadeseos"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/lbListaDeseos"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:text="Lista Deseos"
+        android:textSize="16sp" />
     <Spinner
         android:id="@+id/spListaDeseos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spOpiniones" />
+        android:ems="10" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llfamilia"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/lbFamilia"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:gravity="left|bottom"
+        android:text="Familia"
+        android:textSize="16sp" />
     <Spinner
         android:id="@+id/spFamilia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spListaDeseos" />
+        android:ems="10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llbotones"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
 
 
     <Button
         android:id="@+id/btnGuardarCambiosPerfume"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="112dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginRight="200dp"
-        android:text="Guardar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spFamilia" />
+        android:text="Guardar" />
 
     <Button
         android:id="@+id/btnCancelarEdicionPerfume"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Cancelar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.64"
-        app:layout_constraintStart_toEndOf="@+id/btnGuardarCambiosPerfume"
-        app:layout_constraintTop_toBottomOf="@+id/spFamilia" />
+        android:text="Cancelar" />
+    </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
