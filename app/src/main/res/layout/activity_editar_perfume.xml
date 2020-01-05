@@ -1,192 +1,439 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/principal"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent">
 
-    <LinearLayout
-        android:id="@+id/lltitulo"
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="true"
-        android:orientation="horizontal" >
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/tvPerfumeId"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/principal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/lltitulo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Editando Perfume"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llnombre"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="true"
-        android:orientation="horizontal" >
-    <TextView
-        android:id="@+id/lbNombre"
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
-        android:text="Nombre"
-        android:textSize="16sp" />
-    <EditText
-        android:id="@+id/etEditarNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:hint="Nombre del perfume"
-        android:inputType="text"
-        android:textSize="16sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llmarca"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="true"
-        android:orientation="horizontal" >
-    <TextView
-        android:id="@+id/lbMarca"
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
-        android:gravity="left|bottom"
-        android:text="Marca"
-        android:textSize="16sp" />
-    <EditText
-        android:id="@+id/etEditarMarca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Marca del perfume"
-        android:textSize="16sp"
-        android:inputType="text" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llarea"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="true"
-        android:orientation="horizontal" >
-    <TextView
-        android:id="@+id/lbArea"
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
-        android:text="Area"
-        android:textSize="16sp" />
-    <Spinner
-        android:id="@+id/spArea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llopiniones"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="true"
-        android:orientation="horizontal" >
-    <TextView
-        android:id="@+id/lbOpiniones"
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
-        android:text="Opiniones"
-        android:textSize="16sp" />
-    <Spinner
-        android:id="@+id/spOpiniones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/lllistadeseos"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="true"
-        android:orientation="horizontal" >
-    <TextView
-        android:id="@+id/lbListaDeseos"
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
-        android:text="Lista Deseos"
-        android:textSize="16sp" />
-    <Spinner
-        android:id="@+id/spListaDeseos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llfamilia"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="true"
-        android:orientation="horizontal" >
-    <TextView
-        android:id="@+id/lbFamilia"
-        android:layout_width="100sp"
-        android:layout_height="wrap_content"
-        android:gravity="left|bottom"
-        android:text="Familia"
-        android:textSize="16sp" />
-    <Spinner
-        android:id="@+id/spFamilia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llbotones"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="true"
-        android:orientation="horizontal" >
+                <EditText
+                    android:id="@+id/tvPerfumeId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
 
 
-    <Button
-        android:id="@+id/btnGuardarCambiosPerfume"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Guardar" />
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:text="Editando Perfume"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/btnCancelarEdicionPerfume"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancelar" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llnombre"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/lbNombre"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/etNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="Nombre del perfume"
+                    android:inputType="text"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llmarca"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbMarca"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|bottom"
+                    android:text="Marca"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/etMarca"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Marca del perfume"
+                    android:inputType="text"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llarea"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbArea"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Area"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spArea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llopiniones"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbOpiniones"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Opiniones"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spOpiniones"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lllistadeseos"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbListaDeseos"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Lista Deseos"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spListaDeseos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llprioridad"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbPrioridad"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Prioridad"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spPrioridad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llfamilia"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbFamilia"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left|bottom"
+                    android:text="Familia"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spFamilia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llacordes"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbAcordes"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Acordes"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/etAcordes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="Acordes"
+                    android:inputType="textMultiLine"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llnotapredominante"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbNotaPredominante"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Nota Predominante"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/etNotaPredominante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="Nota Predominante"
+                    android:inputType="textMultiLine"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llnotassalida"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbNotasSalida"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Notas Salida"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/etNotasSalida"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="Notas Salida"
+                    android:inputType="textMultiLine"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llnotascorazon"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbNotasCorazon"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Notas Corazon"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/etNotasCorazon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="Notas Corazon"
+                    android:inputType="textMultiLine"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llnotasfondo"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbNotasFondo"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Notas Fondo"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/etNotasFondo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="Notas Fondo"
+                    android:inputType="textMultiLine"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llestela"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbEstela"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Estela"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spEstela"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llduracion"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbDuracion"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Duracion"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spDuracion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llvaloracion"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbValoracion"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Valoracion"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/spValoracion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llclon"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/lbClon"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content"
+                    android:text="Clon"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/etClon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:hint="Clon"
+                    android:inputType="textMultiLine"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llbotones"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="true"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/btnGuardarCambiosPerfume"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Guardar" />
+
+                <Button
+                    android:id="@+id/btnCancelarEdicionPerfume"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cancelar" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
 
 </LinearLayout>

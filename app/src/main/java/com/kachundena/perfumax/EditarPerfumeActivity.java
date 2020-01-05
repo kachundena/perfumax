@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kachundena.perfumax.controllers.PerfumesController;
@@ -16,8 +17,11 @@ import com.kachundena.perfumax.modelos.Perfume;
 import java.util.HashMap;
 
 public class EditarPerfumeActivity extends AppCompatActivity {
-    private EditText etEditarNombre, etEditarMarca;
+    private EditText etNombre, etMarca, etAcordes, etNotaPredominante;
+    private EditText etNotasSalida, etNotasCorazon, etNotasFondo;
+    private EditText etClon, etID;
     private Spinner spArea, spOpiniones, spListaDeseos, spFamilia;
+    private Spinner spEstela, spDuracion, spValoracion, spPrioridad;
     private Button btnGuardarCambios, btnCancelarEdicion;
     private Perfume perfume;
     private PerfumesController perfumesController;
@@ -83,6 +87,50 @@ public class EditarPerfumeActivity extends AppCompatActivity {
         adapterFamilia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spFamilia.setAdapter(adapterFamilia);
 
+        // Estela
+        spEstela = (Spinner)findViewById(R.id.spEstela);
+        HashMap<Integer, String> hmEstela = new HashMap();
+        String[] arszEstela = res.getStringArray(R.array.array_estela);
+        for (int i = 0; i < arszEstela.length; i++) {
+            hmEstela.put(i,arszEstela[i]);
+        }
+        ArrayAdapter<String> adapterEstela = new ArrayAdapter<String>(EditarPerfumeActivity.this, android.R.layout.simple_spinner_item, arszEstela);
+        adapterEstela.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spEstela.setAdapter(adapterEstela);
+
+        // Valoracion
+        spValoracion = (Spinner)findViewById(R.id.spValoracion);
+        HashMap<Integer, String> hmValoracion = new HashMap();
+        String[] arszValoracion = res.getStringArray(R.array.array_valoracion);
+        for (int i = 0; i < arszValoracion.length; i++) {
+            hmValoracion.put(i,arszValoracion[i]);
+        }
+        ArrayAdapter<String> adapterValoracion = new ArrayAdapter<String>(EditarPerfumeActivity.this, android.R.layout.simple_spinner_item, arszValoracion);
+        adapterValoracion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spValoracion.setAdapter(adapterValoracion);
+
+        // Duracion
+        spDuracion = (Spinner)findViewById(R.id.spDuracion);
+        HashMap<Integer, String> hmDuracion = new HashMap();
+        String[] arszDuracion = res.getStringArray(R.array.array_duracion);
+        for (int i = 0; i < arszDuracion.length; i++) {
+            hmDuracion.put(i,arszDuracion[i]);
+        }
+        ArrayAdapter<String> adapterDuracion = new ArrayAdapter<String>(EditarPerfumeActivity.this, android.R.layout.simple_spinner_item, arszDuracion);
+        adapterDuracion.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spDuracion.setAdapter(adapterDuracion);
+
+        // Prioridad
+        spPrioridad = (Spinner)findViewById(R.id.spPrioridad);
+        HashMap<Integer, String> hmPrioridad = new HashMap();
+        String[] arszPrioridad = res.getStringArray(R.array.array_prioridad);
+        for (int i = 0; i < arszPrioridad.length; i++) {
+            hmPrioridad.put(i,arszPrioridad[i]);
+        }
+        ArrayAdapter<String> adapterPrioridad = new ArrayAdapter<String>(EditarPerfumeActivity.this, android.R.layout.simple_spinner_item, arszPrioridad);
+        adapterPrioridad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spPrioridad.setAdapter(adapterPrioridad);
+
 
 
         // Rearmar el perfume
@@ -95,15 +143,36 @@ public class EditarPerfumeActivity extends AppCompatActivity {
 
 
         // Ahora declaramos las vistas
-        etEditarNombre = findViewById(R.id.etEditarNombre);
-        etEditarMarca = findViewById(R.id.etEditarMarca);
+        etNombre = findViewById(R.id.etNombre);
+        etMarca = findViewById(R.id.etMarca);
+        etAcordes = findViewById(R.id.etAcordes);
+        etNotaPredominante = findViewById(R.id.etNotaPredominante);
+        etNotasSalida = findViewById(R.id.etNotasSalida);
+        etNotasCorazon = findViewById(R.id.etNotasCorazon);
+        etNotasFondo = findViewById(R.id.etNotasFondo);
+        etID = findViewById(R.id.tvPerfumeId);
         btnCancelarEdicion = findViewById(R.id.btnCancelarEdicionPerfume);
         btnGuardarCambios = findViewById(R.id.btnGuardarCambiosPerfume);
 
 
         // Rellenar los EditText con los datos de la tarea
-        etEditarNombre.setText(String.valueOf(perfume.getNombre()));
-        etEditarMarca.setText(perfume.getMarca());
+        if (perfume.getNombre() != null)
+            etNombre.setText(String.valueOf(perfume.getNombre()));
+        if (perfume.getMarca() != null)
+            etMarca.setText(perfume.getMarca());
+        if (perfume.getAcordes() != null)
+            etAcordes.setText(perfume.getAcordes());
+        if (perfume.getNota_predominante() != null)
+            etNotaPredominante.setText(perfume.getNota_predominante());
+        if (perfume.getNotas_salida() != null)
+            etNotasSalida.setText(perfume.getNotas_salida());
+        if (perfume.getNotas_corazon() != null)
+            etNotasCorazon.setText(perfume.getNotas_corazon());
+        if (perfume.getNotas_fondo() != null)
+            etNotasFondo.setText(perfume.getNotas_fondo());
+        if (perfume.getClon() != null)
+            etClon.setText(perfume.getClon());
+        etID.setText(Integer.toString(perfume.getPerfume_id()));
 
         // Listener del click del botón para salir, simplemente cierra la actividad
         btnCancelarEdicion.setOnClickListener(new View.OnClickListener() {
@@ -118,24 +187,42 @@ public class EditarPerfumeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Remover previos errores si existen
-                etEditarNombre.setError(null);
-                etEditarMarca.setError(null);
+                etNombre.setError(null);
+                etMarca.setError(null);
                 // Crear la task con los nuevos cambios pero ponerle
                 // el id de la anterior
-                String nuevoNombre = etEditarNombre.getText().toString();
-                String nuevoMarca = etEditarMarca.getText().toString();
+                String nuevoNombre = etNombre.getText().toString();
+                String nuevoMarca = etMarca.getText().toString();
                 if (nuevoNombre.isEmpty()) {
-                    etEditarNombre.setError("Escribe el nombre");
-                    etEditarNombre.requestFocus();
+                    etNombre.setError("Escribe el nombre");
+                    etNombre.requestFocus();
                     return;
                 }
                 if (nuevoMarca.isEmpty()) {
-                    etEditarMarca.setError("Escribe la marca");
-                    etEditarMarca.requestFocus();
+                    etMarca.setError("Escribe la marca");
+                    etMarca.requestFocus();
                     return;
                 }
                 // Si llegamos hasta aquí es porque los datos ya están validados
-                Perfume perfumeConNuevosCambios = new Perfume(perfume.getPerfume_id(), nuevoNombre, nuevoMarca);
+                Perfume perfumeConNuevosCambios = new Perfume();
+                perfumeConNuevosCambios.setPerfume_id(Integer.parseInt(etID.getText().toString()));
+                perfumeConNuevosCambios.setNombre(nuevoNombre);
+                perfumeConNuevosCambios.setMarca(nuevoMarca);
+                perfumeConNuevosCambios.setOpiniones(spOpiniones.getSelectedItemPosition());
+                perfumeConNuevosCambios.setLista_deseos(spListaDeseos.getSelectedItemPosition());
+                perfumeConNuevosCambios.setPrioridad(spPrioridad.getSelectedItemPosition());
+                perfumeConNuevosCambios.setFamilia(spFamilia.getSelectedItemPosition());
+                perfumeConNuevosCambios.setAcordes(etAcordes.getText().toString());
+                perfumeConNuevosCambios.setNota_predominante(etNotaPredominante.getText().toString());
+                perfumeConNuevosCambios.setNotas_salida(etNotasSalida.getText().toString());
+                perfumeConNuevosCambios.setNotas_corazon(etNotasCorazon.getText().toString());
+                perfumeConNuevosCambios.setNotas_fondo(etNotasFondo.getText().toString());
+                perfumeConNuevosCambios.setClon(etClon.getText().toString());
+                perfumeConNuevosCambios.setEstela(spEstela.getSelectedItemPosition());
+                perfumeConNuevosCambios.setDuracion(spDuracion.getSelectedItemPosition());
+                perfumeConNuevosCambios.setValoracion(spValoracion.getSelectedItemPosition());
+                perfumeConNuevosCambios.setArea(spArea.getSelectedItemPosition());
+
                 int filasModificadas = perfumesController.guardarCambios(perfumeConNuevosCambios);
                 if (filasModificadas != 1) {
                     // De alguna forma ocurrió un error porque se debió modificar únicamente una fila
