@@ -38,6 +38,20 @@ public class PerfumesController {
         ContentValues valoresParaInsertar = new ContentValues();
         valoresParaInsertar.put("nombre", perfume.getNombre());
         valoresParaInsertar.put("marca", perfume.getMarca());
+        valoresParaInsertar.put("area", perfume.getArea());
+        valoresParaInsertar.put("opiniones", perfume.getOpiniones());
+        valoresParaInsertar.put("lista_deseos", perfume.getLista_deseos());
+        valoresParaInsertar.put("prioridad", perfume.getPrioridad());
+        valoresParaInsertar.put("familia", perfume.getFamilia());
+        valoresParaInsertar.put("acordes", perfume.getAcordes());
+        valoresParaInsertar.put("nota_predominante", perfume.getNota_predominante());
+        valoresParaInsertar.put("notas_salida", perfume.getNotas_salida());
+        valoresParaInsertar.put("notas_corazon", perfume.getNotas_corazon());
+        valoresParaInsertar.put("notas_fondo", perfume.getNotas_fondo());
+        valoresParaInsertar.put("estela", perfume.getEstela());
+        valoresParaInsertar.put("duracion", perfume.getDuracion());
+        valoresParaInsertar.put("valoracion", perfume.getValoracion());
+        valoresParaInsertar.put("clon", perfume.getClon());
         return baseDeDatos.insert(NOMBRE_TABLA, null, valoresParaInsertar);
     }
 
@@ -46,6 +60,20 @@ public class PerfumesController {
         ContentValues valoresParaActualizar = new ContentValues();
         valoresParaActualizar.put("nombre", perfumeEditado.getNombre());
         valoresParaActualizar.put("marca", perfumeEditado.getMarca());
+        valoresParaActualizar.put("area", perfumeEditado.getArea());
+        valoresParaActualizar.put("opiniones", perfumeEditado.getOpiniones());
+        valoresParaActualizar.put("lista_deseos", perfumeEditado.getLista_deseos());
+        valoresParaActualizar.put("prioridad", perfumeEditado.getPrioridad());
+        valoresParaActualizar.put("familia", perfumeEditado.getFamilia());
+        valoresParaActualizar.put("acordes", perfumeEditado.getAcordes());
+        valoresParaActualizar.put("nota_predominante", perfumeEditado.getNota_predominante());
+        valoresParaActualizar.put("notas_salida", perfumeEditado.getNotas_salida());
+        valoresParaActualizar.put("notas_corazon", perfumeEditado.getNotas_corazon());
+        valoresParaActualizar.put("notas_fondo", perfumeEditado.getNotas_fondo());
+        valoresParaActualizar.put("estela", perfumeEditado.getEstela());
+        valoresParaActualizar.put("duracion", perfumeEditado.getDuracion());
+        valoresParaActualizar.put("valoracion", perfumeEditado.getValoracion());
+        valoresParaActualizar.put("clon", perfumeEditado.getClon());
         // where id...
         String campoParaActualizar = "perfume_id = ?";
         //
@@ -58,7 +86,10 @@ public class PerfumesController {
         // readable porque no vamos a modificar, solamente leer
         SQLiteDatabase baseDeDatos = ayudanteBaseDeDatos.getReadableDatabase();
         // SELECT deno, detalle, perfume_id
-        String[] columnasAConsultar = {"nombre", "marca", "perfume_id"};
+        String[] columnasAConsultar = {"nombre", "marca", "perfume_id", "area",
+            "opiniones", "lista_deseos", "prioridad", "familia", "acordes",
+            "nota_predominante", "notas_salida", "notas_corazon", "notas_fondo",
+            "estela", "duracion", "valoracion", "clon"};
         Cursor cursor = baseDeDatos.query(
                 NOMBRE_TABLA,
                 columnasAConsultar,
@@ -88,7 +119,24 @@ public class PerfumesController {
             String nombreObtenidoDeBD = cursor.getString(0);
             String marcaObtenidaDeBD = cursor.getString(1);
             //int perfumeid = cursor.getInt(2);
-            Perfume perfumeObtenidaDeBD = new Perfume(perfumeid, nombreObtenidoDeBD, marcaObtenidaDeBD);
+            Perfume perfumeObtenidaDeBD = new Perfume();
+            perfumeObtenidaDeBD.setPerfume_id(perfumeid);
+            perfumeObtenidaDeBD.setNombre(nombreObtenidoDeBD);
+            perfumeObtenidaDeBD.setMarca(marcaObtenidaDeBD);
+            perfumeObtenidaDeBD.setArea(cursor.getInt(3));
+            perfumeObtenidaDeBD.setOpiniones(cursor.getInt(4));
+            perfumeObtenidaDeBD.setLista_deseos(cursor.getInt(5));
+            perfumeObtenidaDeBD.setPrioridad(cursor.getInt(6));
+            perfumeObtenidaDeBD.setFamilia(cursor.getInt(7));
+            perfumeObtenidaDeBD.setAcordes(cursor.getString(8));
+            perfumeObtenidaDeBD.setNota_predominante(cursor.getString(9));
+            perfumeObtenidaDeBD.setNotas_salida(cursor.getString(10));
+            perfumeObtenidaDeBD.setNotas_corazon(cursor.getString(11));
+            perfumeObtenidaDeBD.setNotas_fondo(cursor.getString(12));
+            perfumeObtenidaDeBD.setEstela(cursor.getInt(13));
+            perfumeObtenidaDeBD.setDuracion(cursor.getInt(14));
+            perfumeObtenidaDeBD.setValoracion(cursor.getInt(15));
+            perfumeObtenidaDeBD.setClon(cursor.getString(16));
             perfume = perfumeObtenidaDeBD;
         } while (cursor.moveToNext());
 
@@ -135,7 +183,24 @@ public class PerfumesController {
             String nombreObtenidoDeBD = cursor.getString(2);
             String marcaObtenidaDeBD = cursor.getString(3);
             int perfumeid = cursor.getInt(0);
-            Perfume perfumeObtenidaDeBD = new Perfume(perfumeid, nombreObtenidoDeBD, marcaObtenidaDeBD);
+            Perfume perfumeObtenidaDeBD = new Perfume();
+            perfumeObtenidaDeBD.setPerfume_id(perfumeid);
+            perfumeObtenidaDeBD.setNombre(nombreObtenidoDeBD);
+            perfumeObtenidaDeBD.setMarca(marcaObtenidaDeBD);
+            perfumeObtenidaDeBD.setArea(cursor.getInt(1));
+            perfumeObtenidaDeBD.setOpiniones(cursor.getInt(4));
+            perfumeObtenidaDeBD.setLista_deseos(cursor.getInt(5));
+            perfumeObtenidaDeBD.setPrioridad(cursor.getInt(6));
+            perfumeObtenidaDeBD.setFamilia(cursor.getInt(7));
+            perfumeObtenidaDeBD.setAcordes(cursor.getString(8));
+            perfumeObtenidaDeBD.setNota_predominante(cursor.getString(9));
+            perfumeObtenidaDeBD.setNotas_salida(cursor.getString(10));
+            perfumeObtenidaDeBD.setNotas_corazon(cursor.getString(11));
+            perfumeObtenidaDeBD.setNotas_fondo(cursor.getString(12));
+            perfumeObtenidaDeBD.setEstela(cursor.getInt(13));
+            perfumeObtenidaDeBD.setDuracion(cursor.getInt(14));
+            perfumeObtenidaDeBD.setValoracion(cursor.getInt(15));
+            perfumeObtenidaDeBD.setClon(cursor.getString(16));
             perfumes.add(perfumeObtenidaDeBD);
         } while (cursor.moveToNext());
 

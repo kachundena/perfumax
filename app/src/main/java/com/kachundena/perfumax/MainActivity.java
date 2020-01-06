@@ -331,17 +331,21 @@ public class MainActivity extends AppCompatActivity {
             }
             JSONObject obj = new JSONObject(JSONToString(fileData));
             // fetch JSONArray named users
-            JSONArray Jperfumes = obj.getJSONArray("tasks");
+            JSONArray Jperfumes = obj.getJSONArray("perfumes");
             // implement for loop for getting users list data
-            String nombre, marca;
             perfumesController.eliminarAllPerfumes();
             for (int i = 0; i < Jperfumes.length(); i++) {
                 // create a JSONObject for fetching single user data
-                JSONObject Jtask = Jperfumes.getJSONObject(i);
+                JSONObject Jperfume = Jperfumes.getJSONObject(i);
                 // fetch email and name and store it in arraylist
-                nombre = Jtask.getString("nombre");
-                marca = Jtask.getString("marca");
-                Perfume nuevoperfume = new Perfume(nombre, marca);
+                Perfume nuevoperfume = new Perfume();
+                nuevoperfume.setNombre(Jperfume.getString("nombre"));
+                nuevoperfume.setMarca(Jperfume.getString("marca"));
+                nuevoperfume.setArea(Jperfume.getInt("area"));
+                nuevoperfume.setOpiniones(Jperfume.getInt("opiniones"));
+                nuevoperfume.setLista_deseos(Jperfume.getInt("lista_deseos"));
+                nuevoperfume.setPrioridad(Jperfume.getInt("prioridad"));
+
                 perfumesController.nuevoPerfume(nuevoperfume);
 
             }

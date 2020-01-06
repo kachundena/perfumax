@@ -150,12 +150,13 @@ public class EditarPerfumeActivity extends AppCompatActivity {
         etNotasSalida = findViewById(R.id.etNotasSalida);
         etNotasCorazon = findViewById(R.id.etNotasCorazon);
         etNotasFondo = findViewById(R.id.etNotasFondo);
+        etClon = findViewById(R.id.etClon);
         etID = findViewById(R.id.tvPerfumeId);
         btnCancelarEdicion = findViewById(R.id.btnCancelarEdicionPerfume);
         btnGuardarCambios = findViewById(R.id.btnGuardarCambiosPerfume);
 
 
-        // Rellenar los EditText con los datos de la tarea
+        // Rellenar los EditText con los datos del perfume
         if (perfume.getNombre() != null)
             etNombre.setText(String.valueOf(perfume.getNombre()));
         if (perfume.getMarca() != null)
@@ -173,6 +174,16 @@ public class EditarPerfumeActivity extends AppCompatActivity {
         if (perfume.getClon() != null)
             etClon.setText(perfume.getClon());
         etID.setText(Integer.toString(perfume.getPerfume_id()));
+
+        spArea.setSelection(perfume.getArea());
+        spOpiniones.setSelection(perfume.getOpiniones());
+        spListaDeseos.setSelection(perfume.getLista_deseos());
+        spPrioridad.setSelection(perfume.getPrioridad() + 1);
+        spEstela.setSelection(perfume.getEstela());
+        spDuracion.setSelection(perfume.getDuracion());
+        spValoracion.setSelection(perfume.getValoracion());
+        spFamilia.setSelection(perfume.getFamilia());
+
 
         // Listener del click del botón para salir, simplemente cierra la actividad
         btnCancelarEdicion.setOnClickListener(new View.OnClickListener() {
@@ -210,7 +221,7 @@ public class EditarPerfumeActivity extends AppCompatActivity {
                 perfumeConNuevosCambios.setMarca(nuevoMarca);
                 perfumeConNuevosCambios.setOpiniones(spOpiniones.getSelectedItemPosition());
                 perfumeConNuevosCambios.setLista_deseos(spListaDeseos.getSelectedItemPosition());
-                perfumeConNuevosCambios.setPrioridad(spPrioridad.getSelectedItemPosition());
+                perfumeConNuevosCambios.setPrioridad(spPrioridad.getSelectedItemPosition() - 1);
                 perfumeConNuevosCambios.setFamilia(spFamilia.getSelectedItemPosition());
                 perfumeConNuevosCambios.setAcordes(etAcordes.getText().toString());
                 perfumeConNuevosCambios.setNota_predominante(etNotaPredominante.getText().toString());
