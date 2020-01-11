@@ -184,7 +184,6 @@ public class EditarPerfumeActivity extends AppCompatActivity {
         spValoracion.setSelection(perfume.getValoracion());
         spFamilia.setSelection(perfume.getFamilia());
 
-
         // Listener del click del botón para salir, simplemente cierra la actividad
         btnCancelarEdicion.setOnClickListener(new View.OnClickListener() {
             @Override

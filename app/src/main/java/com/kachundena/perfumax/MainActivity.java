@@ -345,7 +345,16 @@ public class MainActivity extends AppCompatActivity {
                 nuevoperfume.setOpiniones(Jperfume.getInt("opiniones"));
                 nuevoperfume.setLista_deseos(Jperfume.getInt("lista_deseos"));
                 nuevoperfume.setPrioridad(Jperfume.getInt("prioridad"));
-
+                nuevoperfume.setFamilia(Jperfume.getInt("familia"));
+                nuevoperfume.setAcordes(Jperfume.getString("acordes"));
+                nuevoperfume.setNota_predominante(Jperfume.getString("nota_predominante"));
+                nuevoperfume.setNotas_salida(Jperfume.getString("notas_salida"));
+                nuevoperfume.setNotas_corazon(Jperfume.getString("notas_corazon"));
+                nuevoperfume.setNotas_fondo(Jperfume.getString("notas_fondo"));
+                nuevoperfume.setEstela(Jperfume.getInt("estela"));
+                nuevoperfume.setDuracion(Jperfume.getInt("duracion"));
+                nuevoperfume.setValoracion(Jperfume.getInt("valoracion"));
+                nuevoperfume.setClon(Jperfume.getString("clon"));
                 perfumesController.nuevoPerfume(nuevoperfume);
 
             }
